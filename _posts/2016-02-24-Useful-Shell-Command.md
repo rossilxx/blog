@@ -7,11 +7,12 @@ categories: Python Compiler
 ---
 
 Some Useful Command
-+ Xargs
+
+* xargs
 
 xargs
 ------
-+ Execute any command to take every line as an input
++ Execute utility to take every line as an input parameter
 
       cat <fileName> | xargs -L 1 <command>
 

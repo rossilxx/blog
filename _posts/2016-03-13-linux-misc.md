@@ -9,6 +9,7 @@ categories: linux
 Use the proc pseudo file-system to find your file back
 ----
 Sometimes you may delete a file by mistake. We can find it back if some process still held the file descriptor.
+
 + First, find the process.<br>You can use `lsof` command like this:
 
   	lsof | grep deleted | grep myfile
@@ -25,4 +26,4 @@ Sometimes you may delete a file by mistake. We can find it back if some process 
 
 Sometimes we want to delete log files to free space. But the disk space will not freed if the process is still held the fd. We can operator on the proc pseudo file directly in the /proc/fd folder to free the space. In the above case, if we want clean the myfile's data on the disk. We can run the command like this:
 
-  	$echo "" > /proc/4158/fd/4
+	$echo "" > /proc/4158/fd/4

@@ -43,3 +43,19 @@ xargs
       hahaha
 
   __*If EOF is reached and fewer lines have been read than number then utility will be called with the available lines.*__
+  
++ Replace the parameter (read from pipeline stdout) to a placeholder
+
+      cat <fileName> | xargs -L 1 -I 'placeholder' stat 'placeholder' >statfile.txt
+      # truncate log files
+      ls | grep XXX.log | xargs -I 'log' truncate -s 0 'log'
+
+  If there's too much `'` the command may break. For example, if we want to clean the log as below:
+
+      ls | grep XXX.log | xargs -I 'log' echo '' > 'log'
+
+  Will create an empty file named `log` instead truncate it. But you can use `sh -c "COMMAND"` to do this
+
+      ls | grep XXX.log | xargs -I 'log' sh -c "echo '' > log"
+
+
